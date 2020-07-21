@@ -1,0 +1,14 @@
+<launch>
+
+   <node pkg="urg_node" type="urg_node" name="rider_sensor" output="screen">
+    <param name="sensor_param" value="param_value" />
+ </node>
+ <node pkg="self_slam_pkg" type="odometry_publisher" name="odom_node" output="screen">
+    <param name="odom_param" value="param_value" />
+ </node>
+ <node pkg="self_slam_pkg" type="tf_broadcaster" name="tf_broadcaster" output="screen">
+    <param name="odom_param" value="param_value" />
+ </node>
+
+
+</launch> 

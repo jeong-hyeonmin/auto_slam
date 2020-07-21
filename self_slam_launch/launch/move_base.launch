@@ -1,0 +1,29 @@
+<launch>
+ <!--- Run AMCL --> 
+
+
+    <include file="$(find self_slam_launch)/launch/amcl.launch.xml" />
+
+
+
+
+  <arg name="cmd_vel" default="/self_slam_pkg/src/serial_IO" />
+  <arg name="odom_topic" default="/self_slam_pkg/src/odometry_publisher" />
+
+
+
+
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find self_slam_launch)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find self_slam_launch)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find self_slam_launch)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find self_slam_launch)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find self_slam_launch)/param/move_base_params.yaml" command="load" />
+
+    <rosparam file="$(find self_slam_launch)/param/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find self_slam_launch)/param/base_local_planner_params.yaml" command="load" />
+ </node>
+</launch> 
